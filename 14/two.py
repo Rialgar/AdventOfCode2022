@@ -18,6 +18,12 @@ with open('./input.txt', 'r') as input:
             maxDepth = max(maxDepth, point[1])
         paths.append(path)
 
+maxDepth += 2
+minX = min(minX, 500-maxDepth-1)
+maxX = max(maxX, 500+maxDepth+1)
+
+paths.append([(minX, maxDepth), (maxX, maxDepth)])
+
 map = []
 for depth in range(maxDepth+1):
     map.append([])
@@ -76,10 +82,10 @@ while not done:
             sand[1] += 1
         else:
             falling = False
-    if sand[0] < minX or sand[0] > maxX or sand[1] > maxDepth:
+    counter += 1
+    if sand[0] == 500 and sand[1] == 0:        
         done = True
     else:
-        counter += 1
         setMap(sand[0], sand[1], 'o')
 
 printMap()
