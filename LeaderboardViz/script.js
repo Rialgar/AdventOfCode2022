@@ -1,16 +1,16 @@
-function formatNum(num){
-    if(num < 10){
-        return '0' + num
-    } else {
-        return num.toString()
+function formatNum(num, len=2, pad='0'){
+    out = num.toString()
+    while(out.length < len){
+        out = pad + out;
     }
+    return out;
 }
 
 function formatTime(totalseconds){
     const hours = Math.floor(totalseconds/60/60)
     const minutes = Math.floor((totalseconds - hours*60*60) / 60)
     const seconds = totalseconds - hours*60*60 - minutes*60
-    return `${formatNum(hours)}:${formatNum(minutes)}:${formatNum(seconds)}`
+    return `${formatNum(hours, 3, ' ')}:${formatNum(minutes)}:${formatNum(seconds)}`
 }
 
 function formatDate(date){
